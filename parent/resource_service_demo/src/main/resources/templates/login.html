@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<form id="loginform">
+    <input id="username" name="username">
+    <input id="password" name="password">
+    <button id="button" onclick="">提交</button>
+</form>
+<script>
+    $(function(){
+        $("#button").click(function () {
+            $.post("/userlogin",$("#loginForm").serialize(), function (data) {
+                if(data.code=="0"){
+                    window.location.href = "/index";
+                }else if(data.code=="1"){
+                    $("#tick").text(data.message).css("color", "red");
+                }
+            })
+        });
+    });
+</script>
+</body>
+</html>
